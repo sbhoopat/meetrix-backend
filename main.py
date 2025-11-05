@@ -5,7 +5,8 @@ import socketio
 import uvicorn
 import asyncio
 import random
-from routers import finance, routes, drivers, chat, analytics, alerts, students, trip_tracking
+from routers import finance, routes, drivers, chat, analytics, alerts, students, trip_tracking, transport_parent, \
+    payment
 from twilio.rest import Client
 import os
 
@@ -30,6 +31,8 @@ app.include_router(analytics.router)
 app.include_router(alerts.router)
 app.include_router(students.router)
 app.include_router(trip_tracking.router)
+app.include_router(transport_parent.router)
+app.include_router(payment.router)
 
 # ===================== SOCKET.IO SETUP =====================
 sio = socketio.AsyncServer(async_mode="asgi", cors_allowed_origins="*")
