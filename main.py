@@ -81,6 +81,10 @@ async def notify_trip_start(bus_id: str):
     await sio.emit("trip_started", {"bus_id": bus_id, "message": "Trip has started!"})
     return {"status": "success", "message": f"Bus {bus_id} has started the trip."}
 
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
+
 # Handle disconnects (optional cleanup)
 @sio.event
 async def disconnect(sid):
@@ -91,3 +95,4 @@ async def disconnect(sid):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(socket_app, host="0.0.0.0", port=5000)
+
